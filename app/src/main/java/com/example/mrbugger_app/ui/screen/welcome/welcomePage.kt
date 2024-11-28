@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -23,16 +24,20 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.mrbugger_app.R
 import com.example.mrbugger_app.ui.components.ActionButton
 import com.example.mrbugger_app.ui.theme.MrBugger_AppTheme
 import com.example.mrbugger_app.ui.theme.PrimaryYellowDark
 import com.example.mrbugger_app.ui.theme.PrimaryYellowLight
+import kotlinx.coroutines.delay
 
 @Composable
 
 fun welcomePage(
     modifier: Modifier = Modifier,
+    navController: NavController
+
 ){
 
     Box(
@@ -50,7 +55,7 @@ fun welcomePage(
         Image(
             painter = painterResource(id = R.drawable.chef2),
             contentDescription = null,
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().padding(top = 55.dp),
             contentScale = ContentScale.Crop,
 
         )
@@ -60,7 +65,7 @@ fun welcomePage(
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.BottomCenter)
-                .padding(bottom = 224.dp)
+                .padding(bottom = 114.dp)
 
         ) {
             Text(
@@ -81,57 +86,26 @@ fun welcomePage(
                         append("Burger")
                     }
                 },
-                modifier = Modifier.align(Alignment.Center),
+                modifier = Modifier.align(Alignment.Center).padding(bottom = 30.dp),
                 textAlign = TextAlign.Center,
                 color = Color.Black // Main text color
             )
         }
 
-        // Buttons
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .align(Alignment.BottomCenter)
-                .padding(horizontal = 24.dp)
-                .padding(bottom = 61.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-
-            ActionButton(
-                text = "Login",
-                isNavigationArrowVisible = true,
-                onClicked = {},
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.Black, // Background color
-                    contentColor = PrimaryYellowLight,
-
-
-                ),
-                shadowColor = Color.Black,
-                textSize = 25.sp,
-                modifier = Modifier.fillMaxWidth()
-            )
-            ActionButton(
-                text = "Sign Up",
-                isNavigationArrowVisible = false,
-                onClicked = {},
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = PrimaryYellowLight, // Background color
-                    contentColor = Color.Black // Text color
-                ),
-                shadowColor = Color.Black,
-                textSize = 25.sp,
-                modifier = Modifier.fillMaxWidth()
-            )
-
+    }
+    // Navigate to Login Page after a delay
+    LaunchedEffect(Unit) {
+        delay(3000L) // Wait for 3 seconds
+        navController.navigate("login_screen") {
+            popUpTo("welcome_screen") { inclusive = true }
         }
     }
 }
-@Preview(showBackground = true)
-@Composable
-fun PreviewWelcomePage() {
-    MrBugger_AppTheme {
-        welcomePage()
-    }
-}
+
+//@Preview(showBackground = true)
+//@Composable
+//fun PreviewWelcomePage() {
+//    MrBugger_AppTheme {
+//        welcomePage()
+//    }
+//}

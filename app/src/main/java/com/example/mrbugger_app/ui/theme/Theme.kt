@@ -10,12 +10,25 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import com.example.mrbugger_app.R
 
 private val AppColors = darkColorScheme(
     primary = Purple80,
     secondary = PurpleGrey80,
     tertiary = Pink80
 )
+val Poppins = FontFamily(
+    Font(R.font.poppinslight, FontWeight.Light),
+    Font(R.font.poppinsregular, FontWeight.Normal),
+    Font(R.font.poppinsmedium, FontWeight.Medium),
+    Font(R.font.poppinssemibold, FontWeight.SemiBold),
+    Font(R.font.poppinsbold, FontWeight.Bold),
+    Font(R.font.poppinsextrabold, FontWeight.ExtraBold)
+)
+
 
 @Composable
 fun MrBugger_AppTheme(content: @Composable () -> Unit) {

@@ -55,6 +55,7 @@ dependencies {
     implementation(libs.bundles.androidx)
     //Compose
     implementation(platform(libs.compose.bom))
+    implementation(libs.engage.core)
     debugImplementation(libs.compose.tooling)
     implementation(libs.bundles.ui)
 
