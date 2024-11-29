@@ -71,7 +71,7 @@ fun LogoAndCard(){
                             color = PrimaryYellowLight,
                             fontFamily = Poppins,
                             fontWeight = FontWeight.ExtraBold,
-                            fontSize = 35.sp
+                            fontSize = 30.sp
                         )
                     )
                     append("Mr.")

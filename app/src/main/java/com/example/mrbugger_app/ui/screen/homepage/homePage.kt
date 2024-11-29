@@ -39,6 +39,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.mrbugger_app.R
 import com.example.mrbugger_app.ui.components.LogoAndCard
+import com.example.mrbugger_app.ui.components.PromoBanner
 import com.example.mrbugger_app.ui.theme.PrimaryYellowLight
 import com.example.mrbugger_app.ui.theme.Wight
 import com.example.mrbugger_app.ui.theme.gray
@@ -63,8 +64,13 @@ fun homePage(){
        // Category Bar
        CategoryBar()
        Spacer(modifier = Modifier.height(16.dp))
+       //Promotion Banner
+       PromoBanner()
+       Spacer(modifier = Modifier.height(16.dp))
+
        // Food Item Grid
        FoodGrid()
+
    }
 }
 //this for the logo and profile image
