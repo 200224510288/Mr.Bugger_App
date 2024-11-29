@@ -38,6 +38,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.mrbugger_app.R
+import com.example.mrbugger_app.ui.components.CategoryBar
 import com.example.mrbugger_app.ui.components.LogoAndCard
 import com.example.mrbugger_app.ui.components.PromoBanner
 import com.example.mrbugger_app.ui.theme.PrimaryYellowLight
@@ -56,7 +57,7 @@ fun homePage(){
    ) {
        Spacer(modifier = Modifier.height(16.dp))
        //logo and profile image
-       Header()
+       LogoAndCard()
        Spacer(modifier = Modifier.height(2.dp))
        // Search Bar
        Searchbar(search = search, onSearchChange = { search = it })
@@ -73,73 +74,13 @@ fun homePage(){
 
    }
 }
-//this for the logo and profile image
-@Composable
-fun Header(){
-    LogoAndCard()
-}
 
 @Composable
 fun Searchbar(search: String, onSearchChange: (String) -> Unit) {
     com.example.mrbugger_app.ui.components.SearchBar(search = search, onSearchChange = onSearchChange)
 }
 
-@Composable
-fun CategoryBar() {
 
-     val categories = listOf(
-         "All" to R.drawable.beefbuger2,
-         "Chicken" to R.drawable.zingerburger,
-         "Beef" to R.drawable.hamburger,
-         "Veg" to R.drawable.hamburger,
-
-     )
-
-    var selectedCategory by remember { mutableStateOf(0) }
-
-    LazyRow(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
-        contentPadding = PaddingValues(horizontal = 16.dp)
-    ) {
-        items(categories.size) { index ->
-            val (title, imageRes) = categories[index]
-            val isSelected = selectedCategory == index
-
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                Box(
-                    modifier = Modifier
-                        .size(80.dp) // Adjust box size as needed
-                        .clip(RoundedCornerShape(15.dp))
-                        .background(
-                            if (isSelected) PrimaryYellowLight
-                            else Wight
-                        )
-                        .clickable {
-                            selectedCategory = index
-                        },
-                    contentAlignment = Alignment.Center
-                ) {
-                    Image(
-                        painter = painterResource(id = imageRes),
-                        contentDescription = title,
-                        modifier = Modifier.size(62.dp),
-                        contentScale = ContentScale.Crop
-                    )
-                }
-                Text(
-                    text = title,
-                    color = if (isSelected) PrimaryYellowLight else gray,
-                    fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal,
-                    fontSize = 14.sp
-                )
-            }
-        }
-    }
-}
 @Composable
 fun FoodGrid() {
     Column(
